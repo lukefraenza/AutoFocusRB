@@ -1,19 +1,28 @@
-#!/usr/bin/ruby
-
 class Task
-  attr_accessor :name, :done
-  
+  attr_reader :status
+  attr_accessor :name
+
   def initialize(name)
     @name = name
-    @done = false
+    @status = :todo
   end
 
+  def do
+    @status = :done
+  end
+
+
   def to_s
-    if done
-        "[X] " + @name
+    if @status == :done
+        "[X] #{@name}"
     else
-        "[ ] " + @name
+        "[ ] #{@name}"
     end
   end
 
 end
+
+t1 = Task.new("Eat lunch")
+puts t1
+t1.do
+puts t1
