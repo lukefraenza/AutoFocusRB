@@ -3,65 +3,66 @@
 require_relative 'task'
 
 class List
-  attr_accessor :name,:count
+  attr_accessor :listname,:count
 
-  def initialize(name,list)
-    @name = name
-    @list = list
-    @count = @list.length
+  def initialize(name)
+    @listname = name
+    @list = []
+    @count = 0
+    puts "creating new list: #{@listname}..."
   end
 
   def skip
     puts "skipping #{@list[0]}..."
-    @list.push(@list.shift)
+    @list.push(@list.shift)  # rotates item back to end of list
   end
 
   def do
-    puts "doing #{@list.first(1)}..."
+    puts "doing #{@list[0]}..."
     @count -= 1
     @list.shift
   end
 
-  def to_s
-    #@list.first(1).to_s
+  def current_item
     @list[0].to_s
   end
 
+  def to_s
+    puts "#{@listname}"
+    puts "------------"
+    @list.each {|item| puts "#{item}"}
+    puts " "
+  end
+
   def add(item)
-    puts "adding #{@list[0]} to #{@name}..."
+    puts "adding \"#{item}\" to #{@listname}..."
     @list[@list.length] = item
     @count += 1
   end
 
-  def rename(newName)
-    if @list.length > 0
-        @list[0] = newName
-    else
-        "empty list"
-    end
-  end
 end
 
 # a = List.new("Closed List",["dog","cat"])
-t1 = Task.new("Feed dog")
-t2 = Task.new("Feed cat")
-a = List.new("Closed List",[t1,t2])
+t1 = Task.new("task1")
+t2 = Task.new("task2")
+t3 = Task.new("task3")
+a = List.new("Closed List")
+a.add(t1)
+a.add(t2)
 puts a
 a.skip
 puts a
-a.add("v-chip")
+a.add(t3)
 puts a
 a.skip
 puts a
 a.do
 puts a
 
-b = List.new("Open List",[])
+b = List.new "Open List"
 puts b
 b.add(a.do)
 puts a
 puts b
 b.add(b.do)
 puts b
-#b.rename("fun-chip")
-#puts b
