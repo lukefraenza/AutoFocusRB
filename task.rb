@@ -22,7 +22,3 @@ class Task
 
 end
 
-t1 = Task.new("Eat lunch")
-puts t1
-t1.do
-puts t1

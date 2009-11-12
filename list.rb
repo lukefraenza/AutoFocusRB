@@ -56,8 +56,8 @@ a.add(t3)
 puts a
 a.skip
 puts a
-a.do
-puts a
+#a.do
+#puts a
 
 b = List.new "Open List"
 puts b
@@ -66,3 +66,8 @@ puts a
 puts b
 b.add(b.do)
 puts b
+
+puts "========================="
+puts "========================="
+af = [ a, b ]
+p af
